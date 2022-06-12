@@ -6,14 +6,14 @@ function Recipe() {
     let params = useParams()
     const [recipe,SetRecipe] = useState({})
 
-    const fetchRecipe = async () => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
-        const details = await data.json()
-        SetRecipe(details)
-        console.log(details)
-    }
-
     useEffect( () => {
+        const fetchRecipe = async () => {
+            const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
+            const details = await data.json()
+            SetRecipe(details)
+            console.log(details)
+        }
+
         fetchRecipe()
     }, [params.name])
 
